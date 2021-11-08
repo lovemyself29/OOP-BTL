@@ -6,32 +6,33 @@ class Animal{
     private:   
         string name;
         float height,weight;
-        Animal *left;
-        Animal *right;
         int type;
-        long size;
     public:
-        friend istream& operator >> (istream& is,Animal *al);
-        friend ostream& operator << (ostream& os,Animal *al);
-        virtual void toStream (istream& is);
+    	virtual void toStream (istream& is);
+        friend istream& operator >> (istream& ,Animal* );
+        friend ostream& operator << (ostream& os,Animal* al);
+        Animal operator = (Animal* al); 
+        
         Animal();
-        Animal(string name);
+        Animal(string name,float height, float weight, int type);
         Animal(Animal* al);
         ~Animal();
-        //Work With Tree
-        int LeftOf(const Animal *al,const Animal* root );
-        int RightOf(const Animal *al,const Animal* root );
-        Animal* Insert(Animal* al,const Animal* al1);
-        Animal* SearchName(Animal* al,const Animal* al1);
-        void PreOder(Animal* al);
-        Animal* Delete(Animal* al, Animal *al1);
-        Animal LeftMostAnimal(const Animal* al);
         
+        float getHeight(){
+        	return height; 
+		}
+        float getWeight(){
+        	return weight; 
+		} 
+        int getType(){
+        	return type; 
+		}
+               
 };
 
 
 
-//Dv an co
+//Dv an c?
 typedef class Graminivore:public Animal{
         string food;
         int amount;
@@ -42,7 +43,7 @@ typedef class Graminivore:public Animal{
         
 }Grami;
 
-// Dv an thit
+// Dv an th?t
 typedef class Hypercarnivore:public Animal{
         string food;
         int amount;
@@ -53,16 +54,34 @@ typedef class Hypercarnivore:public Animal{
         
 }Hyper;
 
-// Vi sinh vat
+// Vi sinh v?t
 typedef class Microorganism:public Animal{
+		string food; 
         int type;
-        string special;
+        int amount;
     public: 
         virtual void toStream(istream& is);
         friend ostream& operator << (ostream& os,Microorganism *mi);
         
 }Microo;
 
+// Làm việc với cây
+class BST{
+	private:
+		Animal data; 
+		BST *left;
+		BST *right;
+		long size;
+	public:
+		//Work With Tree
+        int LeftOf(Animal *al,Animal* root );
+        int RightOf(Animal *al,Animal* root );
+        Animal* Insert(Animal* al,const Animal* al1);
+        Animal* SearchName(Animal* al,const Animal* al1);
+        void PreOder(Animal* al);
+        Animal* Delete(Animal* al, Animal *al1);
+        Animal LeftMostAnimal(const Animal* al);
+}; 
 
 // Vector
 class ListAnimal{
@@ -73,3 +92,4 @@ class ListAnimal{
         void StatistSpec(); 
         void SearchList();
 };
+

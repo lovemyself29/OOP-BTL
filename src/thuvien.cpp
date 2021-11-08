@@ -2,7 +2,7 @@
 #include <thuvien.h>
 using namespace std;
 
-//Nhap dong vat
+//Nh?p d?ng v?t
 istream& operator >> (istream& is,Animal *al){
     al->toStream(is);
     return is;
@@ -10,8 +10,8 @@ istream& operator >> (istream& is,Animal *al){
 
 ostream& operator << (ostream& os,Animal *al){
     os << "\t*********************--*********************\n";
-    os <<"\t\tName: "<< al->name<<endl;
-    os <<"\tHeight: "<< al->height<<"|| Weight: "<<al->weight<<endl;
+    os << "\t\tName: " << al->name << endl;
+    os << "\tHeight: " << al->height << " cm" << "|| Weight: " << al->weight << " cm" <<endl;
     return os;
 }
 
@@ -25,51 +25,55 @@ void Animal::toStream(istream& is){
     is >> weight;
 }
 
-//Khoi Tao Hàm
+Animal Animal::operator = (Animal* al){
+	this->name = al->name;
+	this->height = al->height;
+	this->weight = al->weight;
+	this->type = al->type; 
+}
+//Kh?i T?o Hàm
 Animal::Animal(){
-    Animal *al = new Animal;
     this->name = "None";
-    al->left = NULL;
-    al->right = NULL;
-    size = 0;
+	this->height = 0 ;
+	this->weight = 0 ;
+	this->type = 0 ;
 }
 
-Animal::Animal(string name){
-    Animal *al = new Animal;
+Animal::Animal(string name,float height, float weight, int type){
     this->name = name;
-    al->left = NULL;
-    al->right = NULL;
-    size ++;
-    
+    this->height = height;
+    this->weight = weight;
+    this->type =  0 ; 
 }
 
 Animal::Animal(Animal* al){
     this->name = al->name;
-    this->left = al->left;
-    this->right = al->right;
-    size++;
+	this->height = al->height;
+    this->weight = al->weight;
+    this->type =  al->type; 
 }
 
 Animal::~Animal(){
+	
     
 }
 
-// Hàm Duyệt Vi Trí Bé Nhat Hoac Lon Nhat
-int Animal::LeftOf(const Animal *al,const Animal* root ){    
-    return ((al->height * al->weight)/2 < (root->height * root->weight)/2 || al->type < root->type) ;
+// Hàm Tr? V? V? Trí Bé Nh?t Ho?c L?n Nh?t
+int BST::LeftOf(Animal *al,Animal* root){    
+    return ((al->getHeight() * al->getWeight())/2 < (root->getHeight() * root->getWeight())/2 || al->getType() < root->getType());
 }
  
-int Animal::RightOf(const Animal *al,const Animal* root){
-    return ((al->height * al->weight)/2 > (root->height * root->weight)/2 || al->type > root->type);
+int BST::RightOf(Animal *al,Animal* root){    
+    return ((al->getHeight() * al->getWeight())/2 > (root->getHeight() * root->getWeight())/2 || al->getType() > root->getType());
 }
 
-// Thêm Phần Tử
-Animal* Animal::Insert(Animal* al,const Animal *al1){
+
+Animal* BST::Insert(Animal* al,const Animal *al1){
     if ( al == NULL){
-        Animal* node = new Animal;
+        BST* node = new BST;
         node ->left = NULL;
         node ->right = NULL;
-        *node = *al1;
+        node = al1;
         return node;
     }
     else{
@@ -81,8 +85,7 @@ Animal* Animal::Insert(Animal* al,const Animal *al1){
 		return al;
 }
 
-// Tìm Kiếm
-Animal* Animal::SearchName(Animal *al,const Animal *al1){
+Animal* BST::SearchName(Animal *al,const Animal *al1){
 	if (al == NULL){
 		return NULL;
 	}
@@ -96,8 +99,8 @@ Animal* Animal::SearchName(Animal *al,const Animal *al1){
 	return al;
 }
 
-//Duyệt Left -> Right -> Node
-void Animal::PreOder(Animal* al){
+
+void BST::PreOder(Animal* al){
 	if(al != NULL){
 		PreOder(al->left);
 		PreOder(al->right);
@@ -105,15 +108,15 @@ void Animal::PreOder(Animal* al){
 	}
 }
 
-//Tìm Và Trả Về Phần Tử Nhỏ Nhất Bên Trái
-Animal Animal::LeftMostAnimal(const Animal* al){
+
+Animal BST::LeftMostAnimal(const Animal* al){
     while(al->left != NULL)
         al = al->left;
     return *al;
 }
 
-//Hàm Xóa Phần Tử
-Animal* Animal::Delete(Animal* al, Animal *al1){
+
+Animal* BST::Delete(Animal* al, Animal *al1){
     if (al == NULL)
         return al;
     if (LeftOf(al1,al))
@@ -142,7 +145,9 @@ Animal* Animal::Delete(Animal* al, Animal *al1){
 
 
 
-//Nhap dong vat an co
+
+
+//Nh?p d?ng v?t an c?
 void Grami::toStream(istream& is){
     Animal::toStream(is);
     fflush(stdin);
@@ -151,11 +156,11 @@ void Grami::toStream(istream& is){
     cout <<"\t\tAmout: ";
     is >> amount;
     do{
-        cout <<"\t\tType";
+        cout <<"\t\tType: ";
         is >> type;
-        if(type < 1 || type > 3)
+        if(type != 2)
             cout << "\t\tNegative !"<<endl;
-    }   while(type < 1 || type > 3);   
+    }   while(type != 2);   
 }
 
 ostream& operator << (ostream& os,Grami *gn){
@@ -163,13 +168,13 @@ ostream& operator << (ostream& os,Grami *gn){
     os << al;
     os << "\t\tAmount: " << gn->amount <<" Individuals"<<endl;
     os << "\t\tFavorite Food: " << gn->food <<endl;
-    os << "\t\tType: " << gn->type;
-    return os;
+    cout <<"\t\tType: Graminivore"<< endl; 
+    cout <<"\t*********************~~*********************" << endl; 
 }
 
 
 
-//Nhap dong vat an thit
+//Nh?p d?ng v?t an th?t
 void Hyper::toStream(istream& is){
     Animal::toStream(is);
     fflush(stdin);
@@ -178,7 +183,7 @@ void Hyper::toStream(istream& is){
     cout <<"\t\tAmout: ";
     is >> amount;
     do{
-        cout <<"\t\tType";
+        cout <<"\t\tType: ";
         is >> type;
         if(type != 3)
             cout << "\t\tNegative !"<<endl;
@@ -190,19 +195,22 @@ ostream& operator << (ostream& os,Hyper *hy){
     os << al;
     os << "\tAmount: " << hy->amount <<" Individuals"<<endl;
     os << "\tFavorite Food: " << hy->food <<endl;
-    return os;
+    cout <<"\t\tType: Hypercarnivore"<<endl; 
+    cout <<"\t*********************~~*********************" << endl; 
 }
 
 
 
-//Nhap dong vat vi sinh
+//Nh?p d?ng v?t vi sinh
 void Microorganism::toStream(istream& is){
     Animal::toStream(is) ;
     fflush(stdin);
-    cout <<"\tData: ";
-    is >> special;
+    cout <<"\t\tFavorite Food: ";
+    is >> food;
+    cout <<"\t\tAmount: ";
+    is >> amount;
     do{
-        cout <<"\tType";
+        cout <<"\t\tType: ";
         is >> type;
         if(type != 1)
             cout << "\tNegative !"<<endl;
@@ -212,6 +220,8 @@ void Microorganism::toStream(istream& is){
 ostream& operator << (ostream& os,Microo *mi){
     Animal *al = static_cast <Animal *> (mi);
     os << al;
-    os << "\tData: "<<mi->special;
-    return os;
+    os << "\t\tAmount: "<< mi->amount<<endl; 
+    os << "\t\tFavorite Food: "<< mi->food<<endl; 
+    cout <<"\t\tType: Microorganism" << endl;
+    cout <<"\t*********************~~*********************" << endl; 
 }
