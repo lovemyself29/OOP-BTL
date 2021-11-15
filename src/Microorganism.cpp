@@ -9,13 +9,7 @@ void Microorganism::toStream(istream& is){
     cout <<"\t\tFavorite Food: ";
     is >> food;
     cout <<"\t\tAmount: ";
-    is >> amount;
-    do{
-        cout <<"\t\tType: ";
-        is >> type;
-        if(type != 1)
-            cout << "\tNegative !"<<endl;
-    }   while(type != 1 );    
+    is >> amount;  
 }
 
 ostream& operator << (ostream& os,Microo *mi){
@@ -23,6 +17,5 @@ ostream& operator << (ostream& os,Microo *mi){
     os << al;
     os << "\t\tAmount: "<< mi->amount<<endl; 
     os << "\t\tFavorite Food: "<< mi->food<<endl; 
-    cout <<"\t\tType: Microorganism" << endl;
     cout <<"\t*********************~~*********************" << endl; 
 }

@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+//Class Cơ Sở Động Vật
 class Animal{
     private:   
         string name;
         float height,weight;
-        int type;
+        int id;
     public:
     	virtual void toStream (istream& is);
         friend istream& operator >> (istream& ,Animal* );
@@ -14,53 +14,39 @@ class Animal{
         Animal operator = (Animal* al); 
         
         Animal();
-        Animal(string name,float height, float weight, int type);
+        Animal(string name,float height, float weight, int id);
         Animal(Animal* al);
         ~Animal();
-        
-        
-        string getName(){
-        	return name; 
-		} 
-        float getHeight(){
-        	return height; 
-		}
-        float getWeight(){
-        	return weight; 
-		} 
-        int getType(){
-        	return type; 
-		}
-               
+        string getName();
+        int getID();
+        void EnterKey();            
 };
 
 
-//Dv an c?
+//Dv Ăn Cỏ 
 typedef class Graminivore:public Animal{
         string food;
         int amount;
-        int type;
     public: 
         virtual void toStream(istream& is);
         friend ostream& operator << (ostream& os,Graminivore *gn);
         
 }Grami;
 
-// Dv an th?t
+
+// Dv Ăn Thịt
 typedef class Hypercarnivore:public Animal{
         string food;
         int amount;
-        int type;
     public: 
         virtual void toStream(istream& is);
         friend ostream& operator << (ostream& os,Hypercarnivore *hy);
         
 }Hyper;
 
-// Vi sinh v?t
+// Vi Sinh Vật
 typedef class Microorganism:public Animal{
 		string food; 
-        int type;
         int amount;
     public: 
         virtual void toStream(istream& is);
@@ -68,8 +54,9 @@ typedef class Microorganism:public Animal{
 }Microo;
 
 
+// Cây Tìm Kiếm Nhị Phân
 struct Node{
-	Animal data; 
+	Animal *data; 
 	Node* left;
 	Node* right; 
 }; 
@@ -80,23 +67,14 @@ struct BST{
 		Node *root; 
 		long size;
 		
-		Node* CreateNode(Animal al); 
+		Node* CreateNode(Animal *al); 
 		//Work With Tree
         int LeftOf(Animal *al,Node* root );
         int RightOf(Animal *al,Node* root );
         Node* Insert(Node* root, Animal* al1);
         Node* SearchName(Node* root,Animal* al1);
-        void PreOder(Node* root);
+        void PostOder(Node* root);
         Node* Delete(Node* root, Animal *al1);
         Node* LeftMostAnimal(Node* root);
-}; 
-
-
-class ListAnimal{
-    private:
-        vector<Animal *> AL;
-    public:
-        void SortList(); 
-        void StatistSpec(); 
-        void SearchList();
 };
+

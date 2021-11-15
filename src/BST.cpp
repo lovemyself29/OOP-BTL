@@ -4,23 +4,26 @@ using namespace std;
 
 
 //Tạo Node
-Node* BST::CreateNode(Animal al){
+Node* BST::CreateNode(Animal *al){
 	Node * p= new Node; 
-	p->data = al;
+    Animal *al1 = new Animal(al);
+	p->data = al1;
 	p->left = NULL;
 	p->right = NULL; 
 	return p; 
 } 
 
+
 //Duyệt Phần Tử Bên Trái Root > Left và Right > Root
 int BST::LeftOf(Animal *al,Node* root){    
-    return (al->getType() < root->data.getType() || (al->getHeight() * al->getWeight())/2 < (root->data.getHeight() * root->data.getWeight())/2 );
+    return (al->getID() < root->data->getID());
 }
 
 
 int BST::RightOf(Animal *al,Node* root){    
-    return (al->getType() > root->data.getType() || (al->getHeight() * al->getWeight())/2 > (root->data.getHeight() * root->data.getWeight())/2 );
+    return (al->getID() > root->data->getID());
 }
+
 
 //Chèn Phần Tử
 Node* BST::Insert(Node* root,Animal *al1){
@@ -37,13 +40,14 @@ Node* BST::Insert(Node* root,Animal *al1){
 		return root;
 }
 
+
 //Tìm Kiếm Phần Tử
 Node* BST::SearchName(Node *root,Animal *al1){
 	if (root == NULL){
 		return NULL;
 	}
 	
-	if(root->data.getName() == al1->getName()){
+	if(root->data->getName() == al1->getName()){
         return root;
     }
 	else if(LeftOf(al1,root))
@@ -53,14 +57,16 @@ Node* BST::SearchName(Node *root,Animal *al1){
 	return root;
 	}
 
+
 //Duyệt Phần Tử Theo Left -> Right -> Node
-void BST::PreOder(Node* root){
+void BST::PostOder(Node* root){
 	if(root != NULL){
-		PreOder(root->left);
-		PreOder(root->right);
-		cout << root;
+		PostOder(root->left);
+		PostOder(root->right);
+		cout << root->data;
 	}
 }
+
 
 //Trả Về Phần Tử Bé Nhất Bên Trai
 Node* BST::LeftMostAnimal(Node* root){
@@ -68,6 +74,7 @@ Node* BST::LeftMostAnimal(Node* root){
         root = root->left;
     return root;
 }
+
 
 //Xóa Phần Tử
 Node* BST::Delete(Node* root, Animal *al1){
@@ -96,3 +103,4 @@ Node* BST::Delete(Node* root, Animal *al1){
     }
     return root;
 }
+

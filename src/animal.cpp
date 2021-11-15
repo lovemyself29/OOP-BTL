@@ -8,12 +8,15 @@ istream& operator >> (istream& is,Animal *al){
     return is;
 }
 
+
 ostream& operator << (ostream& os,Animal *al){
     os << "\t*********************--*********************\n";
     os << "\t\tName: " << al->name << endl;
-    os << "\tHeight: " << al->height << " cm" << "|| Weight: " << al->weight << " cm" <<endl;
+    os << "\tHeight: " << al->height << " kg" << "|| Weight: " << al->weight << " cm" <<endl;
+    os << "\t\tID: " << al->id<<endl;
     return os;
 }
+
 
 void Animal::toStream(istream& is){
     fflush(stdin);
@@ -23,35 +26,47 @@ void Animal::toStream(istream& is){
     is >> height;
     cout <<"\t\tWeight: ";
     is >> weight;
+    do{
+        cout <<"\t\tID: ";
+        is >> id;
+        if(id < 1 || id > 299)
+            cout << "\t\tNegative !"<<endl;
+    }   while(id < 1 || id > 299);  
 }
+
 
 Animal Animal::operator = (Animal* al){
 	this->name = al->name;
 	this->height = al->height;
 	this->weight = al->weight;
-	this->type = al->type; 
-}
-//Khợi Tạo Hàm
-Animal::Animal(){
-    this->name = "None";
-	this->height = 0 ;
-	this->weight = 0 ;
-	this->type = 0 ;
+	this->id = al->id; 
 }
 
-Animal::Animal(string name,float height, float weight, int type){
+
+//Khởi Tạo Hàm
+Animal::Animal(){
+    this->name = "None";
+	this->height = 0;
+	this->weight = 0;
+	this->id = 0;
+}
+
+
+Animal::Animal(string name,float height, float weight, int id){
     this->name = name;
     this->height = height;
     this->weight = weight;
-    this->type =  0 ; 
+    this->id =  0; 
 }
+
 
 Animal::Animal(Animal* al){
     this->name = al->name;
 	this->height = al->height;
     this->weight = al->weight;
-    this->type =  al->type; 
+    this->id =  al->id; 
 }
+
 
 Animal::~Animal(){
 }
@@ -61,14 +76,13 @@ string Animal::getName(){
     return name; 
 }
 
-float Animal::getHeight(){
-    return height; 
+
+int Animal::getID(){
+	return id;
 }
 
-float Animal::getWeight(){
-    return weight; 
-}
-
-int Animal::getType(){
-    return type; 
+//Produce Key 
+void EnterKey(){
+        	cout << "Enter Key Name: ";
+        	cin >> name; 
 }
