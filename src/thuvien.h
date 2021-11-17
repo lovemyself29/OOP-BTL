@@ -3,10 +3,12 @@
 using namespace std;
 //Class Cơ Sở Động Vật
 class Animal{
+
     private:   
         string name;
         float height,weight;
         int id;
+
     public:
     	virtual void toStream (istream& is);
         friend istream& operator >> (istream& ,Animal* );
@@ -25,6 +27,7 @@ class Animal{
 
 //Dv Ăn Cỏ 
 typedef class Graminivore:public Animal{
+
         string food;
         int amount;
     public: 
@@ -36,6 +39,7 @@ typedef class Graminivore:public Animal{
 
 // Dv Ăn Thịt
 typedef class Hypercarnivore:public Animal{
+
         string food;
         int amount;
     public: 
@@ -46,6 +50,7 @@ typedef class Hypercarnivore:public Animal{
 
 // Vi Sinh Vật
 typedef class Microorganism:public Animal{
+    
 		string food; 
         int amount;
     public: 

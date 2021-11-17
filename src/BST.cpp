@@ -55,7 +55,7 @@ Node* BST::SearchName(Node *root,Animal *al1){
 	else if(RightOf(al1,root))
 		SearchName(root->right,al1);
 	return root;
-	}
+}
 
 
 //Duyệt Phần Tử Theo Left -> Right -> Node
