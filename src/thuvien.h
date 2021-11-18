@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 //Class Cơ Sở Động Vật
 class Animal{
@@ -83,3 +82,26 @@ struct BST{
         Node* LeftMostAnimal(Node* root);
 };
 
+//Linked List
+struct NodeL{
+    Animal *data;
+    NodeL *next;
+};
+
+struct SList{
+	NodeL *head;
+	NodeL *tail;
+	long size;
+	SList();
+    ~SList();
+	NodeL* CreateNodeL(Animal *v);
+    void addLast(Animal *v);
+    void insertAfter(NodeL *p, Animal *v);
+    NodeL *previous(NodeL *p);
+    NodeL *searchName(NodeL *p, string name);
+    void sort();
+    void removeFirst();
+    void removeLast();
+    void removeName();
+    void traverse() const;
+};

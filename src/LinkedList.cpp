@@ -1,24 +1,8 @@
-struct NodeL{
-    Animal *data;
-    NodeL *next;
-};
-struct SList{
-	NodeL *head;
-	NodeL *tail;
-	long size;
-	SList();
-    ~SList();
-	NodeL* CreateNodeL(Animal *v);
-    void addLast(Animal *v);
-    void insertAfter(NodeL *p, Animal *v);
-    NodeL *previous(NodeL *p);
-    NodeL *searchName(NodeL *p, string name);
-    void sort();
-    void removeFirst();
-    void removeLast();
-    void removeName();
-    void traverse() const;
-};
+#include <iostream>
+#include <thuvien.h>
+using namespace std;
+
+
 NodeL* SList::CreateNodeL(Animal *v){
 	NodeL* p = new NodeL;
     Animal *v1 = new Animal(v);
@@ -38,6 +22,8 @@ SList::~SList(){
     tail = NULL;
     size = 0;
 }
+
+
 // thêm vào cuối
 void SList::addLast(Animal *v){
     NodeL *p = CreateNodeL(v);
@@ -61,6 +47,8 @@ void SList::insertAfter(NodeL *p, Animal *v){
         p->next = q;
     }
 }
+
+
 // Duyet cac ptu trong danh sach
 void SList::traverse() const{
     NodeL *p = head;
@@ -71,6 +59,8 @@ void SList::traverse() const{
     cout <<endl;
     delete p;
 }
+
+
 // Tìm kiếm 
 NodeL *SList::searchName(NodeL *p, string name){
     while(p != NULL){
@@ -80,6 +70,8 @@ NodeL *SList::searchName(NodeL *p, string name){
     }
     return p;
 }
+
+
 // Sắp xếp
 void SList::sort(){
     for(NodeL *p = head; p != tail; p=p->next){
@@ -90,6 +82,8 @@ void SList::sort(){
         }
     }
 }
+
+
 // tìm 1 phần tử ngay trước phần tử bất kì
 NodeL* SList::previous(NodeL *p) {
 	NodeL *t = head;
@@ -97,6 +91,7 @@ NodeL* SList::previous(NodeL *p) {
 		t = t->next;
 	return t;
 }
+
 
 void SList::removeFirst(){
    if(size == 0){
@@ -108,6 +103,8 @@ void SList::removeFirst(){
 		size--;
     }
 }
+
+
 void SList::removeLast(){
 	NodeL *pre = previous(tail);
 	NodeL*t =tail;
@@ -116,6 +113,7 @@ void SList::removeLast(){
 	delete t;
 	size--;
 }	
+
 // xoa 1 ptu 
 void SList::removeName(){
     string name;

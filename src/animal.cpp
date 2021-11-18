@@ -82,7 +82,7 @@ int Animal::getID(){
 }
 
 //Produce Key 
-void EnterKey(){
+void Animal::EnterKey(){
         	cout << "Enter Key Name: ";
         	cin >> name; 
 }
