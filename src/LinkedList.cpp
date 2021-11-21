@@ -10,12 +10,14 @@ NodeL* SList::CreateNodeL(Animal *v){
 	p->next = NULL;	
 	return p; 
 }
+
 //khoi tao
 SList::SList(){
     head = NULL;
     tail = NULL;
     size =0;
 }
+
 // giai phong bo nho
 SList::~SList(){
     head = NULL;
@@ -23,8 +25,7 @@ SList::~SList(){
     size = 0;
 }
 
-
-// thêm vào cuối
+// them vao cuoi
 void SList::addLast(Animal *v){
     NodeL *p = CreateNodeL(v);
     if(size == 0){
@@ -37,32 +38,21 @@ void SList::addLast(Animal *v){
     }
     size = size + 1;
 }
-void SList::insertAfter(NodeL *p, Animal *v){
-    NodeL *q = CreateNodeL(v);
-    if(p == NULL){
-        addLast(v);
-    }
-    else{
-        q->next = p->next;
-        p->next = q;
-    }
-}
-
 
 // Duyet cac ptu trong danh sach
 void SList::traverse() const{
     NodeL *p = head;
     while(p != NULL){
-        cout << p->data <<"\t"; 
+    cout << p->data; 
         p = p->next;
     }
     cout <<endl;
-    delete p;
+    delete p;   
 }
 
-
-// Tìm kiếm 
-NodeL *SList::searchName(NodeL *p, string name){
+// Tim kiem 
+NodeL *SList::searchName(string name){
+	NodeL *p = head;
     while(p != NULL){
         if(p->data->getName() == name)
             break;
@@ -71,10 +61,9 @@ NodeL *SList::searchName(NodeL *p, string name){
     return p;
 }
 
-
-// Sắp xếp
+// Sap xep
 void SList::sort(){
-    for(NodeL *p = head; p != tail; p=p->next){
+    for(NodeL *p = head; p->next != NULL; p=p->next){
         for(NodeL *q = p->next; q != NULL; q = q->next){
             if(p->data->getID() > q->data->getID()){
                 swap(p->data,q->data);
@@ -83,8 +72,7 @@ void SList::sort(){
     }
 }
 
-
-// tìm 1 phần tử ngay trước phần tử bất kì
+// tim 1 phan tu ngay truoc phan tu bat ky
 NodeL* SList::previous(NodeL *p) {
 	NodeL *t = head;
 	while (t->next != p)
@@ -95,7 +83,7 @@ NodeL* SList::previous(NodeL *p) {
 
 void SList::removeFirst(){
    if(size == 0){
-   	    cout <<"Khong tim thay ten can xoa";
+   	    cout <<" No Name Has Be Found ! ";
 	}else{
 		NodeL*t = head;
 		head=head->next;
@@ -117,7 +105,7 @@ void SList::removeLast(){
 // xoa 1 ptu 
 void SList::removeName(){
     string name;
-    cout<<"Nhap ten dong vat can xoa:";
+    cout<<"Enter the animal that need to delete: ";
     fflush(stdin);
     getline(cin,name);
     NodeL *p = head;
@@ -141,6 +129,6 @@ void SList::removeName(){
         }
     }
     if(p == NULL){
-        cout <<"Khong tim thay ten dong vat can xoa"<<endl;
+        cout <<" No Name Has Be Found ! " <<endl;
     }
 }

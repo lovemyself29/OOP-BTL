@@ -13,22 +13,20 @@ Node* BST::CreateNode(Animal *al){
 	return p; 
 } 
 
-
-//Duyệt Phần Tử Bên Trái Root > Left và Right > Root
+//Duyet Phan Tu Ben Trai Root > Left va Right > Root
 int BST::LeftOf(Animal *al,Node* root){    
     return (al->getID() < root->data->getID());
 }
-
 
 int BST::RightOf(Animal *al,Node* root){    
     return (al->getID() > root->data->getID());
 }
 
-
-//Chèn Phần Tử
-Node* BST::Insert(Node* root,Animal *al1){
+//Chen Phan Tu
+Node* BST::Insert(Node* &root,Animal *al1){
     if ( root == NULL){
         Node* node = CreateNode(al1);
+        size++;
         return node;
     }
     else{
@@ -40,9 +38,8 @@ Node* BST::Insert(Node* root,Animal *al1){
 		return root;
 }
 
-
-//Tìm Kiếm Phần Tử
-Node* BST::SearchName(Node *root,Animal *al1){
+//Tim Kiem Phan Tu
+Node* BST::SearchID(Node *root,Animal *al1){
 	if (root == NULL){
 		return NULL;
 	}
@@ -51,33 +48,38 @@ Node* BST::SearchName(Node *root,Animal *al1){
         return root;
     }
 	else if(LeftOf(al1,root))
-		SearchName(root->left,al1);
+		SearchID(root->left,al1);
 	else if(RightOf(al1,root))
-		SearchName(root->right,al1);
+		SearchID(root->right,al1);
 	return root;
 }
 
-
-//Duyệt Phần Tử Theo Left -> Right -> Node
-void BST::PostOder(Node* root){
+//Duyet Phan Tu Theo Left -> Right -> Node
+void BST::PostOrder(Node* root){
 	if(root != NULL){
-		PostOder(root->left);
-		PostOder(root->right);
+		PostOrder(root->left);
+		PostOrder(root->right);
 		cout << root->data;
 	}
 }
 
+void BST::InOrder(Node* root){
+	if(root != NULL){
+		InOrder(root->left);
+		cout << root->data;
+		InOrder(root->right);
+	}
+}
 
-//Trả Về Phần Tử Bé Nhất Bên Trai
+//Tra Ve Phan Tu Bu Nhat Ben Trai
 Node* BST::LeftMostAnimal(Node* root){
     while(root->left != NULL)
         root = root->left;
     return root;
 }
 
-
-//Xóa Phần Tử
-Node* BST::Delete(Node* root, Animal *al1){
+//Xoa Phan Tu
+Node* BST::Delete(Node* &root, Animal *al1){
     if (root == NULL)
         return root;
     if (LeftOf(al1,root))
@@ -101,6 +103,6 @@ Node* BST::Delete(Node* root, Animal *al1){
         root = LeftMostAnimal(root->right);
         root->right = Delete(root->right,al1);
     }
+    size --;
     return root;
 }
-

@@ -18,9 +18,12 @@ class Animal{
         Animal(string name,float height, float weight, int id);
         Animal(Animal* al);
         ~Animal();
+        
+        void setName(string name);
+        void setID(int id); 
         string getName();
         int getID();
-        void EnterKey();            
+        void EnterID(int &id);        
 };
 
 
@@ -75,10 +78,11 @@ struct BST{
 		//Work With Tree
         int LeftOf(Animal *al,Node* root );
         int RightOf(Animal *al,Node* root );
-        Node* Insert(Node* root, Animal* al1);
-        Node* SearchName(Node* root,Animal* al1);
-        void PostOder(Node* root);
-        Node* Delete(Node* root, Animal *al1);
+        Node* Insert(Node* &root, Animal* al1);
+        Node* SearchID(Node* root,Animal* al1);
+        void PostOrder(Node* root);
+        void InOrder(Node* root);
+        Node* Delete(Node* &root, Animal *al1);
         Node* LeftMostAnimal(Node* root);
 };
 
@@ -96,9 +100,8 @@ struct SList{
     ~SList();
 	NodeL* CreateNodeL(Animal *v);
     void addLast(Animal *v);
-    void insertAfter(NodeL *p, Animal *v);
     NodeL *previous(NodeL *p);
-    NodeL *searchName(NodeL *p, string name);
+    NodeL *searchName(string name);
     void sort();
     void removeFirst();
     void removeLast();

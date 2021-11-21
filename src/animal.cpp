@@ -76,13 +76,25 @@ string Animal::getName(){
     return name; 
 }
 
-
 int Animal::getID(){
 	return id;
 }
 
-//Produce Key 
-void Animal::EnterKey(){
-        	cout << "Enter Key Name: ";
-        	cin >> name; 
+void Animal::EnterID(int &id){
+	cout << "Enter Id Key: ";
+    cin >> id;
+	do{
+		if(id < 1 ||  id>299){ 
+        	cout << "Enter Id Again: ";
+        	cin >> id; 
+		}
+	}while(id < 1 || id > 299);
+}
+
+void Animal::setID(int id){
+	this->id = id;	
+}
+
+void Animal::setName(string name){
+    this->name = name;
 }
