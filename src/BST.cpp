@@ -2,8 +2,6 @@
 #include <thuvien.h>
 using namespace std;
 
-
-//Tạo Node
 Node* BST::CreateNode(Animal *al){
 	Node * p= new Node; 
     Animal *al1 = new Animal(al);
@@ -35,6 +33,7 @@ Node* BST::Insert(Node* &root,Animal *al1){
     	else if(RightOf(al1,root))
     		root->right = Insert(root->right,al1);
 	}
+        // size ++;
 		return root;
 }
 
@@ -44,7 +43,7 @@ Node* BST::SearchID(Node *root,Animal *al1){
 		return NULL;
 	}
 	
-	if(root->data->getName() == al1->getName()){
+	if(root->data->getID() == al1->getID()){
         return root;
     }
 	else if(LeftOf(al1,root))
@@ -52,6 +51,13 @@ Node* BST::SearchID(Node *root,Animal *al1){
 	else if(RightOf(al1,root))
 		SearchID(root->right,al1);
 	return root;
+}
+
+//Tra Ve Phan Tu Bu Nhat Ben Trai
+Node* BST::LeftMostAnimal(Node* root){
+    while(root->left != NULL)
+        root = root->left;
+    return root;
 }
 
 //Duyet Phan Tu Theo Left -> Right -> Node
@@ -69,13 +75,6 @@ void BST::InOrder(Node* root){
 		cout << root->data;
 		InOrder(root->right);
 	}
-}
-
-//Tra Ve Phan Tu Bu Nhat Ben Trai
-Node* BST::LeftMostAnimal(Node* root){
-    while(root->left != NULL)
-        root = root->left;
-    return root;
 }
 
 //Xoa Phan Tu

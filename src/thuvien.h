@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 using namespace std;
 //Class Cơ Sở Động Vật
 class Animal{
@@ -18,16 +19,14 @@ class Animal{
         Animal(string name,float height, float weight, int id);
         Animal(Animal* al);
         ~Animal();
-        
         void setName(string name);
         void setID(int id); 
         string getName();
-        int getID();
-        void EnterID(int &id);        
+        int getID();       
 };
 
 
-//Dv Ăn Cỏ 
+//Dv An Co 
 typedef class Graminivore:public Animal{
 
         string food;
@@ -39,9 +38,8 @@ typedef class Graminivore:public Animal{
 }Grami;
 
 
-// Dv Ăn Thịt
+// Dv An Thit
 typedef class Hypercarnivore:public Animal{
-
         string food;
         int amount;
     public: 
@@ -50,9 +48,8 @@ typedef class Hypercarnivore:public Animal{
         
 }Hyper;
 
-// Vi Sinh Vật
+// Vi Sinh Vat
 typedef class Microorganism:public Animal{
-    
 		string food; 
         int amount;
     public: 
@@ -61,7 +58,7 @@ typedef class Microorganism:public Animal{
 }Microo;
 
 
-// Cây Tìm Kiếm Nhị Phân
+// Cay Tim Kiem Nhi Phan
 struct Node{
 	Animal *data; 
 	Node* left;

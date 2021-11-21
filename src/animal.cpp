@@ -80,17 +80,6 @@ int Animal::getID(){
 	return id;
 }
 
-void Animal::EnterID(int &id){
-	cout << "Enter Id Key: ";
-    cin >> id;
-	do{
-		if(id < 1 ||  id>299){ 
-        	cout << "Enter Id Again: ";
-        	cin >> id; 
-		}
-	}while(id < 1 || id > 299);
-}
-
 void Animal::setID(int id){
 	this->id = id;	
 }

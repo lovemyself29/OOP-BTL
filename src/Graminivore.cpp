@@ -2,13 +2,12 @@
 #include <thuvien.h>
 using namespace std;
 
-//Động Vật Ăn Cỏ
 void Grami::toStream(istream& is){
     Animal::toStream(is);
     fflush(stdin);
     cout <<"\t\tFavorite Food: ";
     is >> food;
-    cout <<"\t\tAmout: ";
+    cout <<"\t\tAmount: ";
     is >> amount; 
 }
 
