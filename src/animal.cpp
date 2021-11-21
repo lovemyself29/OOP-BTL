@@ -84,6 +84,3 @@ void Animal::setID(int id){
 	this->id = id;	
 }
 
-void Animal::setName(string name){
-    this->name = name;
-}

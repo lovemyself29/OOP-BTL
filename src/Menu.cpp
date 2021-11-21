@@ -264,7 +264,6 @@ BST MENU(Node* , Animal *al){
                             string name;
                             cin >> name;
                             cout << list.searchName(name)->data;
-                             
                         }break;
                     }
                     cout << "\n Do you want to exit ?(esc) \n";

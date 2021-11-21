@@ -19,7 +19,6 @@ class Animal{
         Animal(string name,float height, float weight, int id);
         Animal(Animal* al);
         ~Animal();
-        void setName(string name);
         void setID(int id); 
         string getName();
         int getID();       
