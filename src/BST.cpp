@@ -38,19 +38,18 @@ Node* BST::Insert(Node* &root,Animal *al1){
 }
 
 //Tim Kiem Phan Tu
-Node* BST::SearchID(Node *root,Animal *al1){
-	if (root == NULL){
-		return NULL;
-	}
-	
-	if(root->data->getID() == al1->getID()){
+Node* BST::SearchName(Node *root,Animal *al1){
+    if (root == NULL){
+        return NULL;
+    }
+    
+    if(root->data->getID() == al1->getID()){
         return root;
     }
-	else if(LeftOf(al1,root))
-		SearchID(root->left,al1);
-	else if(RightOf(al1,root))
-		SearchID(root->right,al1);
-	return root;
+    else if(LeftOf(al1,root))
+        return SearchName(root->left,al1);
+    else if(RightOf(al1,root))
+        return SearchName(root->right,al1);
 }
 
 //Tra Ve Phan Tu Bu Nhat Ben Trai
@@ -102,6 +101,5 @@ Node* BST::Delete(Node* &root, Animal *al1){
         root = LeftMostAnimal(root->right);
         root->right = Delete(root->right,al1);
     }
-    size --;
     return root;
 }

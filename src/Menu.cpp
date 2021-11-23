@@ -1,9 +1,12 @@
 #include <iostream>
 #include <conio.h>
+#include <thuvien.h>
 using namespace std;
 
-BST MENU(Node* , Animal *al){
-    long allSize[5];
+
+void MENU(){
+	Animal* al;
+    long allSize[2] = {0} ;
     char k, c;
 	do{
 		cout << "\t-------------------------------------------------------------------" << endl;
@@ -35,7 +38,7 @@ BST MENU(Node* , Animal *al){
                     cin >> al;
                     tree.root = tree.Insert(tree.root, al);
                 }
-                cout << "\n Now choose your work \n";
+                cout << "\n\t Now choose your work \n";
                 int work2;
                 char k, c;
                 do{
@@ -48,41 +51,53 @@ BST MENU(Node* , Animal *al){
                     cout << "\t\t+  5.         SEARCH FOR ANIMAL		  +\n" << endl;
                     cout << "\t\t+ 	         -ESC. EXIT-	 	  +\n" << endl;
                     cout << "\t\t-------------------------------------------" << endl;
-                    cout << "\n\n Please choose a function:  ";
+                    cout << "\n\n\t Please choose a function:  ";
                     cin >> work2;
                     switch(work2){
                         case 1: {
                             tree.PostOrder(tree.root);
                         }break;
                         case 2: {
-                            cout << " Here Is Sorted Tree \n" << endl;
+                            cout << "\t Here Is Sorted Tree \n" << endl;
                             tree.InOrder(tree.root);
                         }break;
                         case 3: {
                             Animal *all = new Grami;
-                            cout << " Enter Another Animal \n";
+                            cout << "\t Enter Another Animal \n";
                             cin >> all;
                             tree.Insert(tree.root, all);
                         }break;
                         case 4: {
-                            cout << " Delete Animal " << endl;
+                            cout << "\t Delete Animal - Enter Animal ID:  ";
                             int id;
                             Animal *temp1 = new Grami;
-                            cin>>id;
+							cin >> id;
+							do{
+							if(id < 1){
+								cout <<"\t Try Again:";
+								cin >> id;
+							}
+							}while (id < 1);
                             temp1->setID(id);
-                            tree.root = tree.Delete(tree.root, temp1);
-                            cout <<"Deleted Success !"<<endl;
+                            tree.Delete(tree.root, temp1);
+                            cout <<"\t\tDeleted Success !"<<endl;
                         }break;
                         case 5: {
-                            cout << " Search Animal " <<endl;
+                            cout << "\t Search Animal By ID: ";
                             Animal *temp2 = new Grami;
-                            int id; 
-                            cin >> id;
-                            temp2->setID(id); 
-                            cout << tree.SearchID(tree.root, temp2)->data;
+                            int id;
+							cin >> id;
+							do{
+							if(id < 1){
+								cout <<"\t Try Again:";
+								cin >> id;
+							}
+							}while (id < 1);
+                            temp2->setID(id);
+                            cout << tree.SearchName(tree.root, temp2)->data;
                         }break;
                     }
-                        cout << "\nDo You Want To Exit ?(esc)";
+                        cout << "\n\tDo You Want To Exit ?(esc)"<<endl;
                         k = c;
                         c = getch();
                         
@@ -102,7 +117,7 @@ BST MENU(Node* , Animal *al){
                     cin >> al;
                     tree.root = tree.Insert(tree.root, al);
                 }
-                cout << "\n Now Choose Your Work \n";
+                cout << "\n\t Now Choose Your Work \n";
                 int work3;
                 char k,c;
                 do{
@@ -122,34 +137,46 @@ BST MENU(Node* , Animal *al){
                             tree.PostOrder(tree.root);
                         }break;
                         case 2: {
-                            cout << " Here Is Sorted Tree \n" << endl;
+                            cout << "\t Here Is Sorted Tree \n" << endl;
                             tree.InOrder(tree.root);
                         }break;
                         case 3: {
                             Animal *all = new Hyper;
-                            cout << " Enter Another Animal \n";
+                            cout << "\t\t Enter Another Animal \n";
                             cin >> all;
                             tree.Insert(tree.root, all);
                         }break;
                         case 4: {
-                            cout << " Delete Animal \n" << endl;
+                            cout << "\t Delete Animal - Enter Animal ID:  ";
                             int id;
                             Animal *temp1 = new Hyper;
-                            cin>>id;
+							cin >> id;
+							do{
+							if(id < 1){
+								cout <<"\t Try Again:";
+								cin >> id;
+							}
+							}while (id < 1);
                             temp1->setID(id);
-                            tree.root = tree.Delete(tree.root, temp1);
-                            cout <<" Deleted Success !"<<endl;
+                            tree.Delete(tree.root, temp1);
+                            cout <<"\t\tDeleted Success !"<<endl;
                         }break;
                         case 5: {
-                            cout << " Search Animal " <<endl;
+                            cout << "\t Search Animal By ID: ";
                             Animal *temp2 = new Hyper;
-                            int id; 
-                            cin >> id;
-                            temp2->setID(id); 
-                            cout << tree.SearchID(tree.root, temp2)->data;
+                            int id;
+							cin >> id;
+							do{
+							if(id < 1){
+								cout <<"\t Try Again:";
+								cin >> id;
+							}
+							}while (id < 1);
+                            temp2->setID(id);
+                            cout << tree.SearchName(tree.root, temp2)->data;
                         }break;
                     }
-                        cout << "\nDo You Want To Exit ?(esc)";
+                        cout << "\n\tDo You Want To Exit ?(esc)";
                         c = getch();
                         
                 }while(c!=27); 
@@ -168,7 +195,7 @@ BST MENU(Node* , Animal *al){
                     cin >> al;
                     tree.root = tree.Insert(tree.root, al);
                 }
-                cout << "\n Now Choose Your Work \n";
+                cout << "\n\t Now Choose Your Work \n";
                 int work4; 
                 char k, c;
                 do{
@@ -188,34 +215,46 @@ BST MENU(Node* , Animal *al){
                             tree.PostOrder(tree.root);
                         }break;
                         case 2: {
-                            cout << " Here Is Sorted Tree \n" << endl;
+                            cout << "\t\t Here Is Sorted Tree \n" << endl;
                             tree.InOrder(tree.root);
                         }break;
                         case 3: {
                             Animal *all = new Microo;
-                            cout << " Enter Another Animal \n";
+                            cout << "\t Enter Another Animal \n";
                             cin >> all;
                             tree.Insert(tree.root, all);
                         }break;
                         case 4: {
-                            cout << " Delete Animal \n" << endl;
+                            cout << "\t Delete Animal - Enter Animal ID:  ";
                             int id;
                             Animal *temp1 = new Microo;
-                            cin>>id;
+                            cin >> id;
+                            do{
+							if(id < 1){
+								cout <<"\t Try Again:";
+								cin >> id;
+								}
+							}while(id < 1);
                             temp1->setID(id);
                             tree.root = tree.Delete(tree.root, temp1);
-                            cout <<"Deleted Success !"<<endl;
+                            cout <<"\t\tDeleted Success !"<<endl;
                         }break;
                         case 5: {
-                            cout << " Search Animal \n" <<endl;
+                            cout << "\t Search  Animal By ID: ";
                             Animal *temp2 = new Microo;
-                            int id; 
+                            int id;
                             cin >> id;
-                            temp2->setID(id); 
-                            cout << tree.SearchID(tree.root, temp2)->data;
+                            do{
+							if(id < 1){
+								cout <<"\t Try Again:";
+								cin >> id;
+							}
+							}while (id < 1);
+                            temp2->setID(id);
+                            cout << tree.SearchName(tree.root, temp2)->data;
                         }break;
                     }
-                    cout << "\nDo You Want To Exit ?(esc)";
+                    cout << "\n\tDo You Want To Exit ?(esc)"<<endl;
                     k = c;
                     c = getch();
                         
@@ -244,9 +283,20 @@ BST MENU(Node* , Animal *al){
                     switch(work5){
                         case 1: {
                             Animal *al1 = new Grami;
-                            cout << " Enter: \n" << endl;
+                            cout << "\t Enter: \n" << endl;
                             cin >> al1;
                             list.addLast(al1);
+                            
+                            al1 = new Hyper; 
+                            cout << "\t Enter: \n" << endl;
+                            cin >> al1;
+                            list.addLast(al1);
+                            
+                            al1 = new Microo; 
+                            cout << "\t Enter: \n" << endl;
+                            cin >> al1;
+                            list.addLast(al1);
+                            
                         }break;
                         case 2: {
                         	list.traverse();
@@ -257,16 +307,20 @@ BST MENU(Node* , Animal *al){
                         }break;
                         case 4: {
                         	list.removeName();
-                            cout << "\nDeleted Success!"<<endl;
+                            cout << "\n\tDeleted Success!"<<endl;
                         }break;
                         case 5: {
                             Animal *al1 = new Animal;
                             string name;
-                            cin >> name;
-                            cout << list.searchName(name)->data;
+                            cout <<"\n\t Enter The Animal You Want To Find: "; 
+                            fflush(stdin);
+                            getline(cin,name);
+                            al1->setName(name); 
+                            cout << list.searchName(al1)->data;
+                             
                         }break;
                     }
-                    cout << "\n Do you want to exit ?(esc) \n";
+                    cout << "\n\t Do you want to exit ?(esc) \n";
                     k = c;
                     c = getch();
                 }while(c!=27);
@@ -280,11 +334,12 @@ BST MENU(Node* , Animal *al){
 				cout << "\t Total:   "<< allSize[0] + allSize[1] + allSize[2] ;   	
             }break;
             default : {
-                cout << "\n You have chosen to Exit the program \n" << endl;
+                cout << "\n\t You have chosen to Exit the program \n" << endl;
             }break;
         }
-        cout << "\n Do you want to exit ?(esc)";
+        cout << "\n\t Do you want to exit ?(esc)"<<endl;
         k = c;
         c = getch();
+        delete al;
 	}while(c!=27);
 }

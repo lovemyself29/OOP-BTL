@@ -124,7 +124,6 @@ void SList::removeName(){
                 pre->next = p->next;
                 delete p;
                 size--;
-                break;
             }
         }
     }
